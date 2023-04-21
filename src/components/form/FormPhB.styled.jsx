@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-export const FormPhBS = styled.div`
+export const FormPhBS = styled.form`
     display: flex;
     flex-direction: column;
     align-items: left;

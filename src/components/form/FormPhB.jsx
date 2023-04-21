@@ -2,44 +2,54 @@ import { Component } from 'react';
 import { FormPhBS } from './FormPhB.styled';
 
 export class FormPhB extends Component {
-state = {
-  contacts: [
-
-  ],
-  filter: '',
-  name: 'Вася',
-  number: '093'
-}
+    state = {
+        name: '',
+        number: ''
+    }
+    resetForm = () => {
+        this.setState({ name: '', number: '' });
+      };
     handleNameChange = e => {
         this.setState({ name: e.currentTarget.value });
-     }
+    }
+    handleNumberChange = e => {
+        this.setState({ number: e.currentTarget.value });
+    }
 
     render() {
-      return (
-    <FormPhBS onSubmit={this.handleNameChange}>
-      <label>
-        Name
-        <input
-          type="text"
-          name="name"
-          value={this.state.name}
-          onChange={this.handleNameChange}
-        />
-      </label>
+        return (
+            <FormPhBS onSubmit={e => {
+                e.preventDefault();
+                console.log('Працює субміт');
+                this.props.addContact(this.state);
+                this.resetForm();
+            }}>
+                <label>
+                    Name
+                    <input
+                        type="text"
+                        name="name"
+                        value={this.state.name}
+                        onChange={this.handleNameChange}
+                    />
+                </label>
 
-      <label>
-        Number
-        <input
-          type="tel"
+                <label>
+                    Number
+                    <input
+                        type="tel"
+                        name="number"
+                        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                        required
+                        value={this.state.number}
+                        onChange={this.handleNumberChange}
+                    />
+                </label>
 
-          value={this.state.number}
-          onChange={this.handleNameChange}
-        />
-      </label>
-
-      <button type="submit">Add contact</button>
-    </FormPhBS>
-  );
+                <button type="submit">Add contact</button>
+            </FormPhBS>
+        );
     }
 }
 
