@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { FormPhBS } from './FormPhB.styled';
+import { FormPhBS, AddContact } from './FormPhB.styled';
 
 export class FormPhB extends Component {
     state = {
@@ -46,7 +46,7 @@ export class FormPhB extends Component {
                     />
                 </label>
 
-                <button type="submit">Add contact</button>
+                <AddContact type="submit">Add contact</AddContact>
             </FormPhBS>
         );
     }

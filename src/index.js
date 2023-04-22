@@ -6,7 +6,9 @@ import { ThemeProvider } from 'styled-components';
 
 const theme = {
   colors: {
-    primary: '#0070f3',
+    primary: '#232323',
+    accent: '#6085d3',
+    white: '#fdfdfd',
   },
 };
 ReactDOM.createRoot(document.getElementById('root')).render(

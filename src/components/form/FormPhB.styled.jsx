@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 export const FormPhBS = styled.form`
     display: flex;
+    gap: 20px;
     flex-direction: column;
     align-items: left;
     width: 300px;
@@ -16,6 +17,13 @@ export const FormPhBS = styled.form`
     font-weight: 700;
  
 `;
+
+export const AddContact = styled.button`
+    &:hover {
+        background-color: ${p => p.theme.colors.accent};
+        color: ${p => p.theme.colors.white};
+        }
+`
 //    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
 //     -webkit-text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
 //     -moz-text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
