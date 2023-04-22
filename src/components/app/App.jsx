@@ -5,14 +5,15 @@ import { Container } from "./App.styled";
 import { GlobalStyle } from "./Global.styled";
 import { ContactList } from 'components/contact-list/ContactList';
 import { Filter } from 'components/filter/Filter';
+import { nanoid } from 'nanoid'
 
 export class App extends Component {
   state = {
     contacts: [
-      {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-      {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-      {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-      {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
+      {id: nanoid(), name: 'Rosie Simpson', number: '459-12-56'},
+      {id: nanoid(), name: 'Hermione Kline', number: '443-89-12'},
+      {id: nanoid(), name: 'Eden Clements', number: '645-17-79'},
+      {id: nanoid(), name: 'Annie Copeland', number: '227-91-26'},
     ],
     filter: ''
   }
@@ -27,11 +28,12 @@ export class App extends Component {
     if (this.state.contacts.some(contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase())) {
       alert(`${name} is already in contacts`)
     } else {
+      const idd = {id: nanoid()};
       this.setState(prevState => ({
-        contacts: [...prevState.contacts, {name, number}]
+        contacts: [...prevState.contacts, {...idd, name, number}]
       }))
-      return {contacts: [...this.state.contacts, {name, number}]};}
-    };
+    }
+  };
   
   delContact = (id) => {
     const newContacts = this.state.contacts.filter(contact => contact.id!== id);
@@ -48,6 +50,7 @@ export class App extends Component {
       // style={{
       //   height: '100vh',
       //   display: 'flex',
+      //   flexDirection: 'column',
       //   justifyContent: 'center',
       //   alignItems: 'center',
       //   fontSize: 40,
@@ -62,7 +65,6 @@ export class App extends Component {
           onChangeInput={this.onChangeInput}/>
         <ContactList contacts={this.filterContacts()}
         delContact={this.delContact}/>
-        React homework template
       </Container>
     );
   }
