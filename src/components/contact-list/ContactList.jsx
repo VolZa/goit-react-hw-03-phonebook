@@ -1,3 +1,5 @@
+import  PropTypes from 'prop-types'
+
 export const ContactList = ({contacts, delContact}) => {
    return (
       <ul>
@@ -12,4 +14,9 @@ export const ContactList = ({contacts, delContact}) => {
          })}        
       </ul>
    );
+};
+
+ContactList.propTypes = {
+   contacts: PropTypes.array.isRequired,
+   delContact: PropTypes.func.isRequired
 };

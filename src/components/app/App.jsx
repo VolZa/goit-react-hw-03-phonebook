@@ -14,24 +14,34 @@ export class App extends Component {
       {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
       {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
     ],
-    filter: 'Dfcz',
-    name: '',
-    number: ''
+    filter: ''
   }
+
+  //обробник подій всих input (за input:name заповнює відповідне значення state, name в input і в state мають бути однакові) 
   onChangeInput = (e) => {
     this.setState({
       [e.currentTarget.name]: e.currentTarget.value
     })
   }
   addContact = ({name, number}) => {
-    // console.log(name, number);
-    console.log(this.state.contacts.some(contact => contact.name === name && contact.number === number));
-  }
+    if (this.state.contacts.some(contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase())) {
+      alert(`${name} is already in contacts`)
+    } else {
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, {name, number}]
+      }))
+      return {contacts: [...this.state.contacts, {name, number}]};}
+    };
+  
   delContact = (id) => {
     const newContacts = this.state.contacts.filter(contact => contact.id!== id);
     this.setState({contacts: newContacts});
   }
 
+  filterContacts = () => {
+    const {contacts, filter} = this.state;
+    return contacts.filter(contact => contact.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
+  }
   render() {
     return (
       <Container
@@ -48,8 +58,9 @@ export class App extends Component {
         <Title title="Phonebook" />
         <FormPhB addContact={this.addContact}/>
         <Title title="Contacts" />
-        <Filter filter={this.state.filter}/>
-        <ContactList contacts={this.state.contacts}
+        <Filter filter={this.state.filter}
+          onChangeInput={this.onChangeInput}/>
+        <ContactList contacts={this.filterContacts()}
         delContact={this.delContact}/>
         React homework template
       </Container>

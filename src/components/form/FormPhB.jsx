@@ -20,7 +20,6 @@ export class FormPhB extends Component {
         return (
             <FormPhBS onSubmit={e => {
                 e.preventDefault();
-                console.log('Працює субміт');
                 this.props.addContact(this.state);
                 this.resetForm();
             }}>
