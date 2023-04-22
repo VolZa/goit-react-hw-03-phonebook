@@ -15,7 +15,6 @@ export const FormPhBS = styled.form`
     color:  ${p => p.theme.colors.primary};
     font-size: 20px;
     font-weight: 700;
- 
 `;
 
 export const AddContact = styled.button`
@@ -24,6 +23,3 @@ export const AddContact = styled.button`
         color: ${p => p.theme.colors.white};
         }
 `
-//    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
-//     -webkit-text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
-//     -moz-text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
