@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { FormPhBS, AddContact } from './FormPhB.styled';
+import { FormPhBS, AddContact, Label } from './FormPhB.styled';
 
 export class FormPhB extends Component {
     state = {
@@ -23,7 +23,7 @@ export class FormPhB extends Component {
                 this.props.addContact(this.state);
                 this.resetForm();
             }}>
-                <label>
+                <Label>
                     Name
                     <input
                         type="text"
@@ -31,9 +31,9 @@ export class FormPhB extends Component {
                         value={this.state.name}
                         onChange={this.handleNameChange}
                     />
-                </label>
+                </Label>
 
-                <label>
+                <Label>
                     Number
                     <input
                         type="tel"
@@ -44,7 +44,7 @@ export class FormPhB extends Component {
                         value={this.state.number}
                         onChange={this.handleNumberChange}
                     />
-                </label>
+                </Label>
 
                 <AddContact type="submit">Add contact</AddContact>
             </FormPhBS>

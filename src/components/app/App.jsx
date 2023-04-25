@@ -1,11 +1,11 @@
 import { Component } from 'react';
 import { FormPhB } from "components/form/FormPhB";
 import { Title } from "components/title/Title";
-import { Container } from "./App.styled";
 import { GlobalStyle } from "./Global.styled";
 import { ContactList } from 'components/contact-list/ContactList';
 import { Filter } from 'components/filter/Filter';
 import { nanoid } from 'nanoid'
+import { Layout } from 'components/layout/Layout';
 
 export class App extends Component {
   state = {
@@ -17,7 +17,20 @@ export class App extends Component {
     ],
     filter: ''
   }
+ 
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts')
+ 
+    if (contacts) {
+      this.setState({contacts: JSON.parse(contacts)})
+    } else {console.log('no contacts');}
+  }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+    }
+  }
   //обробник подій всих input (за input:name заповнює відповідне значення state, name в input і в state мають бути однакові) 
   onChangeInput = (e) => {
     this.setState({
@@ -46,17 +59,7 @@ export class App extends Component {
   }
   render() {
     return (
-      <Container
-      // style={{
-      //   height: '100vh',
-      //   display: 'flex',
-      //   flexDirection: 'column',
-      //   justifyContent: 'center',
-      //   alignItems: 'center',
-      //   fontSize: 40,
-      //   color: '#010101'
-      // }}
-      >
+      <Layout>
         <GlobalStyle />
         <Title title="Phonebook" />
         <FormPhB addContact={this.addContact}/>
@@ -65,7 +68,7 @@ export class App extends Component {
           onChangeInput={this.onChangeInput}/>
         <ContactList contacts={this.filterContacts()}
         delContact={this.delContact}/>
-      </Container>
+      </Layout>
     );
   }
 };

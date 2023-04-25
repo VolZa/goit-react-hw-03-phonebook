@@ -18,8 +18,15 @@ export const FormPhBS = styled.form`
 `;
 
 export const AddContact = styled.button`
-    &:hover {
+padding: 8px;    
+&:hover {        
         background-color: ${p => p.theme.colors.accent};
         color: ${p => p.theme.colors.white};
         }
+`
+
+export const Label = styled.label`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 `
